@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -138,12 +139,9 @@ fun MathScreen() {
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
 fun OlympsList(){
-    val list = (1..20).map { it.toString() }
-
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
 
-        // content padding
         contentPadding = PaddingValues(
             start = 16.dp,
             top = 16.dp,
@@ -151,23 +149,18 @@ fun OlympsList(){
             bottom = 16.dp
         ),
         content = {
-            items(list.size) { index ->
-                Card(
-                    backgroundColor = LightestGray,
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .clip(RoundedCornerShape(16.dp)),
-                    elevation = 8.dp,
-                ) {
-                    Text(
-                        text = list[index],
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp,
-                        color = Color(0xFFFFFFFF),
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(16.dp)
-                    )
-                }
+            itemsIndexed(
+                listOf(
+                    ItemMathFirstTier(R.drawable.hse, "Высшая проба", "idi"),
+                    ItemMathFirstTier(R.drawable.phys, "Физтех", "nahui"),
+                    ItemMathFirstTier(R.drawable.pvg, "Покори воробьёвы горы!", "yebishe"),
+                    ItemMathFirstTier(R.drawable.spb, "Олимпиада школьников СПБГУ", "ebanoe"),
+                    ItemMathFirstTier(R.drawable.lomo, "Олимпиада Ломоносов", "nenavizhy"),
+                    ItemMathFirstTier(R.drawable.tournament, "Туринр городов", "tebya"),
+                    ItemMathFirstTier(R.drawable.mos, "Московская олимпиада школьников", "sin shluhi")
+                )
+            ){ _, item->
+                ColumnMathFirstTier(item = item)
             }
         }
     )

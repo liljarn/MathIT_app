@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
@@ -22,7 +23,10 @@ import androidx.navigation.NavController
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -41,11 +45,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-sealed class BottomNavItem(var title: String, var icon: Int, var screen_route: String) {
-    object Math : BottomNavItem("Математика", R.drawable.math_icon, "math")
-    object Physics : BottomNavItem("Физика", R.drawable.physics_icon, "phys")
-    object IT : BottomNavItem("Информатика", R.drawable.it_icon, "IT")
-}
 
 @Preview(showBackground = true)
 @Composable
@@ -53,7 +52,33 @@ fun MathScreen() {
     Column(
         modifier = Modifier.fillMaxHeight(0.92f)
     ) {
-        var showFirstRec by remember {mutableStateOf(true)}
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp, top = 20.dp),
+            verticalAlignment = Alignment.Top,
+        ) {
+            Card(
+                shape = RoundedCornerShape(10.dp),
+                backgroundColor = LightestGray
+            ) {
+                Text(
+                    text = "Search Bar will be here",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(5.dp),
+                )
+            }
+            Box(
+                Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.CenterEnd,
+            ) {
+                val image: Painter = painterResource(id = R.drawable.ic_baseline_account_circle_24)
+                Image(
+                    painter = image, contentDescription = ""
+                )
+            }
+        }
+        var showFirstRec by remember { mutableStateOf(true) }
         Row(
             modifier = Modifier.fillMaxWidth(),
         ) {
@@ -63,7 +88,8 @@ fun MathScreen() {
                 modifier = Modifier.padding(start = 20.dp, top = 20.dp, bottom = 10.dp),
                 fontWeight = FontWeight.SemiBold,
                 color = Color.Black,
-                fontSize = 30.sp,
+                fontSize = 36.sp,
+                fontFamily = FontFamily(Font(R.font.tt_commons_medium))
             )
         }
         Row(
@@ -79,7 +105,16 @@ fun MathScreen() {
             val colorOne = if (selectedOne) LightestGray else Color.White
             val colorTwo = if (selectedTwo) LightestGray else Color.White
             val colorThree = if (selectedThree) LightestGray else Color.White
+            val fontStyleOne =
+                if (selectedOne) R.font.tt_commons_demi_bold else R.font.tt_commons_medium
+            val fontStyleTwo =
+                if (selectedTwo) R.font.tt_commons_demi_bold else R.font.tt_commons_medium
+            val fontStyleThree =
+                if (selectedThree) R.font.tt_commons_demi_bold else R.font.tt_commons_medium
             Button(
+                modifier = Modifier
+                    .padding(top = 5.dp, end = 3.dp, start = 3.dp, bottom = 12.dp)
+                    .size(width = 110.dp, height = 36.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = colorOne,
                     contentColor = Color.Black
@@ -95,10 +130,14 @@ fun MathScreen() {
             ) {
                 Text(
                     text = "Уровень 1",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(fontStyleOne))
                 )
             }
             Button(
+                modifier = Modifier
+                    .padding(top = 5.dp, end = 3.dp, start = 3.dp, bottom = 12.dp)
+                    .size(width = 110.dp, height = 36.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = colorTwo,
                     contentColor = Color.Black
@@ -112,10 +151,17 @@ fun MathScreen() {
                     showFirstRec = false
                 },
             ) {
-                Text("Уровень 2", fontSize = 15.sp)
+                Text(
+                    "Уровень 2",
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(fontStyleTwo))
+                )
             }
 
             Button(
+                modifier = Modifier
+                    .padding(top = 5.dp, end = 3.dp, start = 3.dp, bottom = 12.dp)
+                    .size(width = 110.dp, height = 36.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = colorThree,
                     contentColor = Color.Black
@@ -129,16 +175,21 @@ fun MathScreen() {
                     showFirstRec = false
                 },
             ) {
-                Text("Уровень 3", fontSize = 15.sp)
+                Text(
+                    "Уровень 3",
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(fontStyleThree))
+                )
             }
         }
         if (showFirstRec)
             OlympsList()
     }
 }
+
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
-fun OlympsList(){
+fun OlympsList() {
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
 
@@ -156,15 +207,20 @@ fun OlympsList(){
                     ItemMathFirstTier(R.drawable.pvg, "Покори воробьёвы горы!", "yebishe"),
                     ItemMathFirstTier(R.drawable.spb, "Олимпиада школьников СПБГУ", "ebanoe"),
                     ItemMathFirstTier(R.drawable.lomo, "Олимпиада Ломоносов", "nenavizhy"),
-                    ItemMathFirstTier(R.drawable.tournament, "Туринр городов", "tebya"),
-                    ItemMathFirstTier(R.drawable.mos, "Московская олимпиада школьников", "sin shluhi")
+                    ItemMathFirstTier(R.drawable.tournament, "Турнир городов", "tebya"),
+                    ItemMathFirstTier(
+                        R.drawable.mos,
+                        "Московская олимпиада школьников",
+                        "sin shluhi"
+                    )
                 )
-            ){ _, item->
+            ) { _, item ->
                 ColumnMathFirstTier(item = item)
             }
         }
     )
 }
+
 @Composable
 fun PhysScreen() {
     Column(
@@ -245,7 +301,13 @@ fun BottomNavigation(navController: NavController) {
                         modifier = Modifier.size(30.dp)
                     )
                 },
-                label = { Text(text = item.title, fontSize = 12.sp) },
+                label = {
+                    Text(
+                        text = item.title,
+                        fontSize = 12.sp,
+                        fontFamily = FontFamily(Font(R.font.tt_commons_medium))
+                    )
+                },
                 selectedContentColor = Color.Black,
                 unselectedContentColor = Color.Black.copy(0.4f),
                 alwaysShowLabel = true,
@@ -266,7 +328,6 @@ fun BottomNavigation(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 fun MainScreenView() {
     val navController = rememberNavController()

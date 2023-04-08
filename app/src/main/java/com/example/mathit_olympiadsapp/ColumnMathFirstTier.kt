@@ -15,6 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,9 +50,10 @@ fun ColumnMathFirstTier(item: ItemMathFirstTier) {
             text = item.name,
             color = Color.Black,
             modifier = Modifier
-                .padding(bottom = 5.dp, start = 5.dp, end = 5.dp),
+                .padding(5.dp),
             textAlign = TextAlign.Center,
             fontSize = 18.sp,
+            fontFamily = FontFamily(Font(R.font.tt_commons_medium))
         )
     }
 }

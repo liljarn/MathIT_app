@@ -1,24 +1,26 @@
 package com.example.mathit_olympiadsapp
 
+
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-
+import androidx.navigation.NavController
+import com.example.mathit_olympiadsapp.ui.theme.Grei
 import com.example.mathit_olympiadsapp.ui.theme.LightestGray
+import com.example.mathit_olympiadsapp.view.profile_screen.Screen
 
 
 @Composable
-fun SearchBarView() {
+fun SearchBarView(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,25 +35,29 @@ fun SearchBarView() {
         ) {
             val searchImage: Painter = painterResource(id = R.drawable.search_icon)
             Image(
-                // modifier = Modifier.padding(start = 12.dp),
+                modifier = Modifier.padding(start = 12.dp),
                 painter = searchImage, contentDescription = "",
                 alignment = Alignment.CenterStart
             )
 
         }
-
-        Box(
-            //Modifier.fillMaxWidth(),
-            modifier = Modifier
-                .background(Color.Black)
-                .clickable {
-
-                },
-            contentAlignment = Alignment.CenterEnd,
+        IconButton(
+            onClick = {
+                navController.navigate(Screen.ProfileScreen.route) {
+                    navController.graph.startDestinationRoute?.let { screen_route ->
+                        popUpTo(screen_route) {
+                            saveState = true
+                        }
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
         ) {
-            val image: Painter = painterResource(id = R.drawable.profile_icon)
-            Image(
-                painter = image, contentDescription = ""
+            Icon(
+                painter = painterResource(R.drawable.profile_icon),
+                "",
+                tint = Grei
             )
         }
     }

@@ -14,19 +14,20 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.mathit_olympiadsapp.SearchBarView
 import com.example.mathit_olympiadsapp.ui.theme.LightestGray
 import com.example.mathit_olympiadsapp.R
 
-@Preview(showBackground = true)
 @Composable
-fun MathScreen() {
+fun MathScreen(navController : NavHostController) {
+
     Column(
         modifier = Modifier.fillMaxHeight(0.92f)
     ) {
+        SearchBarView(navController = navController)
         var showFirstRec by remember { mutableStateOf(true) }
         Row {
             Text(

@@ -15,18 +15,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.mathit_olympiadsapp.R
 import com.example.mathit_olympiadsapp.ui.theme.Grei
+import com.example.mathit_olympiadsapp.view.BackButton
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
-    IconButton(
-        onClick = { navController.popBackStack() },
-        modifier = Modifier.padding(start = 12.dp, end = 20.dp, top = 24.dp)
-    ) {
-        Icon(
-            painter = painterResource(R.drawable.back_screen), "",
-            tint = Grei,
-        )
-    }
+    BackButton(navController = navController)
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

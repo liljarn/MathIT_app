@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.mathit_olympiadsapp.R
@@ -17,10 +18,13 @@ import com.example.mathit_olympiadsapp.ui.theme.Grei
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
-    IconButton(onClick = { navController.popBackStack() }) {
-        Icon (
-            painter = painterResource(R.drawable.back_screen),"",
-            tint = Grei
+    IconButton(
+        onClick = { navController.popBackStack() },
+        modifier = Modifier.padding(start = 12.dp, end = 20.dp, top = 24.dp)
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.back_screen), "",
+            tint = Grei,
         )
     }
     Column(

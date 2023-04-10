@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mathit_olympiadsapp.view.olymps_screens.math.ItemMathFirstTier
 import com.example.mathit_olympiadsapp.ui.theme.LightestGray
 
 

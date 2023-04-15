@@ -20,13 +20,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mathit_olympiadsapp.view.olymps_screens.math.ItemMathFirstTier
+import com.example.mathit_olympiadsapp.model.Olympiads
 import com.example.mathit_olympiadsapp.ui.theme.LightestGray
 
 
-
 @Composable
-fun ColumnMathFirstTier(item: ItemMathFirstTier) {
+fun ColumnMathFirstTier(olympiads: Olympiads) {
     val context = LocalContext.current
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -37,18 +36,13 @@ fun ColumnMathFirstTier(item: ItemMathFirstTier) {
             .clip(RoundedCornerShape(16.dp))
             .background(LightestGray)
             .clickable {
-                Toast.makeText(context, item.mes, Toast.LENGTH_SHORT).show()
+                Toast
+                    .makeText(context, "huesos", Toast.LENGTH_SHORT)
+                    .show()
             }
     ) {
-        Image(
-            painter = painterResource(id = item.imageID),
-            contentDescription = "image", contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .size(150.dp)
-                .padding(top = 7.dp)
-        )
         Text(
-            text = item.name,
+            text = olympiads.name!!,
             color = Color.Black,
             modifier = Modifier
                 .padding(5.dp),

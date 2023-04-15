@@ -25,7 +25,7 @@ fun SearchBarView(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp, top = 24.dp),
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Card(
@@ -55,7 +55,7 @@ fun SearchBarView(navController: NavController) {
             },
         ) {
             Icon(
-                painter = painterResource(R.drawable.profile_icon),
+                painter = painterResource(R.drawable.profile_icon2),
                 "",
                 tint = Grei
             )

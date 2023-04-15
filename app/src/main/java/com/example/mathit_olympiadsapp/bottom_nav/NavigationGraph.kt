@@ -9,13 +9,14 @@ import com.example.mathit_olympiadsapp.view.olymps_screens.math.MathScreen
 import com.example.mathit_olympiadsapp.view.olymps_screens.PhysScreen
 import com.example.mathit_olympiadsapp.view.profile_screen.ProfileScreen
 import com.example.mathit_olympiadsapp.view.profile_screen.Screen
+import com.example.mathit_olympiadsapp.viewmodels.MainViewModel
 
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, viewModel : MainViewModel) {
     NavHost(navController, startDestination = BottomNavItem.Math.screen_route) {
         composable(BottomNavItem.Math.screen_route) {
-            MathScreen(navController)
+            MathScreen(navController, viewModel)
         }
 
         composable(BottomNavItem.IT.screen_route) {

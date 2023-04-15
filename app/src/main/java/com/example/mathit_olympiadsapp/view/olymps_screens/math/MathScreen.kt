@@ -20,9 +20,10 @@ import androidx.navigation.NavHostController
 import com.example.mathit_olympiadsapp.SearchBarView
 import com.example.mathit_olympiadsapp.ui.theme.LightestGray
 import com.example.mathit_olympiadsapp.R
+import com.example.mathit_olympiadsapp.viewmodels.MainViewModel
 
 @Composable
-fun MathScreen(navController : NavHostController) {
+fun MathScreen(navController : NavHostController, viewModel : MainViewModel) {
 
     Column(
         modifier = Modifier.fillMaxHeight(0.92f)
@@ -128,6 +129,6 @@ fun MathScreen(navController : NavHostController) {
             }
         }
         if (showFirstRec)
-            OlympsList()
+            SetData(viewModel)
     }
 }
